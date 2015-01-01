@@ -2,6 +2,7 @@ pebble-ftc-timer
 ================
 
 A Pebble app for timing FIRST Tech Challenge practice.
+Find it in the Pebble app store as "FTC Match Timer"
 
 Use your wrist when doing match practice!
 
