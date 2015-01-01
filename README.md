@@ -1,11 +1,12 @@
 pebble-ftc-timer
 ================
 
-A Pebble app for timing FIRST Tech Challenge practice
+A Pebble app for timing FIRST Tech Challenge practice.
 
 Use your wrist when doing match practice!
 
 This app, designed for the FIRST Tech Challenge robotics competition, is basically a countdown timer customized for running FTC Matches. 
+
 Features:
 - Optional Autonomous 0:30 timer
 - Teleop 2:00 timer
@@ -15,7 +16,7 @@ Features:
 
 Made by i²robotics, FTC team 6081
 
-Copyright (C) 2014  Alex Davis
+Copyright &copy; 2014  Alex Davis
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
