@@ -42,7 +42,7 @@
     },
     "shortName": "FTC Timer",
     "uuid": "14898afa-0329-49f2-ab26-8abb74e53c40",
-    "versionCode": "010",
+    "versionCode": 010,
     "versionLabel": "0.1",
     "watchapp": {
         "watchface": false
