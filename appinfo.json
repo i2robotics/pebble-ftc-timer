@@ -3,29 +3,14 @@
     "capabilities": [
         ""
     ],
-    "companyName": "i\u00b2robotics",
+    "companyName": "i²robotics",
     "longName": "FTC Match Timer",
     "projectType": "native",
     "resources": {
         "media": [
             {
-                "file": "images/pause.png",
-                "name": "IMAGE_PAUSE",
-                "type": "png"
-            },
-            {
-                "file": "images/settings.png",
-                "name": "IMAGE_SETTINGS",
-                "type": "png"
-            },
-            {
-                "file": "images/play.png",
-                "name": "IMAGE_PLAY",
-                "type": "png"
-            },
-            {
-                "file": "images/home.png",
-                "name": "IMAGE_HOME",
+                "file": "images/stop.png",
+                "name": "IMAGE_STOP",
                 "type": "png"
             },
             {
@@ -34,15 +19,30 @@
                 "type": "png"
             },
             {
-                "file": "images/stop.png",
-                "name": "IMAGE_STOP",
+                "file": "images/home.png",
+                "name": "IMAGE_HOME",
+                "type": "png"
+            },
+            {
+                "file": "images/play.png",
+                "name": "IMAGE_PLAY",
+                "type": "png"
+            },
+            {
+                "file": "images/settings.png",
+                "name": "IMAGE_SETTINGS",
+                "type": "png"
+            },
+            {
+                "file": "images/pause.png",
+                "name": "IMAGE_PAUSE",
                 "type": "png"
             }
         ]
     },
     "shortName": "FTC Timer",
     "uuid": "14898afa-0329-49f2-ab26-8abb74e53c40",
-    "versionCode": 10,
+    "versionCode": "010",
     "versionLabel": "0.1",
     "watchapp": {
         "watchface": false
