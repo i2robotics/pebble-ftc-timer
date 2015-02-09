@@ -24,15 +24,15 @@ enum
   kStateAuto,
   kStateTeleOp
 } ADTimerState;
-int AD_time_value = 0;
+static int AD_end_time = 0;
 const int AD_warning_time = 30;
 bool AD_do_auto = true;
 
-//========== Tick Handler ==========
-void tick_handler(struct tm *tick_time, TimeUnits units_changed)
-{
-  //APP_LOG(APP_LOG_LEVEL_DEBUG, "tick: %i", AD_time_value);
-  AD_time_value--;
+void update_timer(){
+  int AD_time_value = AD_end_time - time(NULL);
+  APP_LOG(APP_LOG_LEVEL_DEBUG, "tick: %i", AD_time_value);
+
+  
   if (AD_time_value == 0) {
     vibes_long_pulse();
     light_enable_interaction();
@@ -50,7 +50,8 @@ void tick_handler(struct tm *tick_time, TimeUnits units_changed)
   char *time_str = "2:00";
 
   //strftime(time_str, 5, "%M:%S", (const struct *tm){.tm_min = AD_time_value/60, .tm_sec = AD_time_value%60});
-  snprintf(time_str, 5, "%i:%i", AD_time_value / 60, AD_time_value % 60);
+  //Prepend "0" to seconds if less than 10 seconds remain in minute
+  snprintf(time_str, 5, (AD_time_value%60 < 10) ? "%i:0%i" : "%i:%i", AD_time_value / 60, AD_time_value % 60);
   text_layer_set_text(time_layer, time_str);
 
   if (STATE_INACTIVE) {
@@ -59,23 +60,30 @@ void tick_handler(struct tm *tick_time, TimeUnits units_changed)
   }
 }
 
+//========== Tick Handler ==========
+void tick_handler(struct tm *tick_time, TimeUnits units_changed)
+{
+  update_timer();
+}
+
 //========== Primary Actions ==========
 void AD_start_timer()
 {
   if (ADTimerState == kStateWaiting || AD_do_auto == false) {
-    AD_time_value = 120;
+    AD_end_time = time(NULL) + 120;
     ADTimerState = kStateTeleOp;
     text_layer_set_text(text_layer, "TeleOp");
     text_layer_set_text(time_layer, "2:00");
     tick_timer_service_subscribe(SECOND_UNIT, (TickHandler) tick_handler);
   } else if (ADTimerState == kStateOff) {
-    AD_time_value = 30;
+    AD_end_time = time(NULL) + 30;
     ADTimerState = kStateAuto;
     text_layer_set_text(text_layer, "Autonomous");
     text_layer_set_text(time_layer, "0:30");
     tick_timer_service_subscribe(SECOND_UNIT, (TickHandler) tick_handler);
   }
   action_bar_layer_set_icon(action_bar, BUTTON_ID_DOWN, (ADTimerState == kStateOff || ADTimerState == kStateWaiting) ? action_icon_play : action_icon_stop);
+  update_timer();
 }
 
 void AD_end_timer()
